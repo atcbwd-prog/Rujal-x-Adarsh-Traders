@@ -1,5 +1,6 @@
 // src/components/Footer.jsx
 import { Mail, Phone, MapPin, Linkedin, Facebook, Youtube } from "lucide-react";
+import logo from "../assets/logo/image.png"
 
 const Footer = () => {
   return (
@@ -8,13 +9,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-gray-700">
         {/* Logo + About */}
         <div>
-          <img
-            src="/logo.png"
-            alt="Texcoms Logo"
-            className="h-10 w-auto object-contain mb-5"
+        <img
+            src={logo}
+            alt="Company Logo"
+            className="h-10 w-auto object-contain"
           />
-          <p className="text-sm leading-relaxed text-gray-400">
-            Texcoms offers global textile solutions — from machinery trading and
+          <p className="text-sm mt-5  leading-relaxed text-gray-400">
+            Adarsh Trading  — from machinery trading and
             consulting to digital transformation — empowering mills to optimize
             performance and quality.
           </p>
@@ -74,20 +75,21 @@ const Footer = () => {
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 mt-0.5 text-blue-400" />
               <span>
-                Texcoms Worldwide <br />
-                15 Kallang Way #06-01, Singapore 349254
+                Adarsh Trading <br />
+                Ground Floos S.No.222, Gala No. B-4 Raj Rajeshwari Compound, Sonale Bhiwandi,Maharashtra(India)421302
               </span>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-blue-400" />
-              <a href="tel:+6567456893" className="hover:text-blue-400">
-                +65 6745 6893
+              <a href="tel:9860690435" className="hover:text-blue-400">
+               9860690435
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-blue-400" />
-              <a href="mailto:info@texcoms.com" className="hover:text-blue-400">
-                info@texcoms.com
+              <a href="kumarjay2050@gmail.com" className="hover:text-blue-400">
+                kumarjay2050@gmail.com
+                info@adarshtradingcompany.com
               </a>
             </li>
           </ul>
@@ -127,7 +129,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="py-6 border-t border-gray-800 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Texcoms Worldwide. All rights reserved.
+        © {new Date().getFullYear()} Adarsh Trading. All rights reserved.
       </div>
     </footer>
   );

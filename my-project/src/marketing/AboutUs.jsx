@@ -7,7 +7,7 @@ export default function About() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-24 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Texcoms Worldwide</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Adarsh Trading Company</h1>
           <p className="max-w-3xl mx-auto text-blue-100 text-lg">
             Delivering global textile expertise through innovation, experience, and excellence.
           </p>
@@ -20,10 +20,7 @@ export default function About() {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Who We Are</h2>
             <p className="text-gray-600 leading-relaxed">
-              Founded in Singapore, Texcoms Worldwide has grown into one of the most trusted
-              textile solution providers globally. With decades of hands-on experience in
-              spinning, weaving, and processing, we offer a complete range of services — from
-              machinery trading and mill setup to consulting and digital transformation.
+            Established in the year 2009 at Bhiwandi, Maharashtra, We Adarsh Trading Company are engaged in offering a wide range of second hand weaving looms. These used weaving looms are sourced from the most trusted vendors of the market. All the machines supplied by us are highly efficient and used in various textile industries for weaving processes. Furthermore, we will check all the spare parts and functions of the looms to ensure only trouble free machines are delivered to the customer end. The used weaving looms can be acquired from us at a comparatively low rate.
             </p>
             <p className="text-gray-600 mt-4 leading-relaxed">
               Our mission is to empower textile enterprises with sustainable technologies,
@@ -140,7 +137,7 @@ export default function About() {
       {/* CTA Section */}
       <section className="py-20 bg-gray-100 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          Partner with Texcoms to Elevate Your Mill’s Performance
+          Partner with Adarsh Trading to Elevate Your Mill’s Performance
         </h2>
         <p className="text-gray-600 mb-8">
           Connect with our experts today for machinery sourcing, audits, or digital upgrades.

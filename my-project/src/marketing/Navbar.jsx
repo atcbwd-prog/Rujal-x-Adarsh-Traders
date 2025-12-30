@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo/image.png";
 
 const Navbar = () => {
   const router = useNavigate();
@@ -21,8 +22,8 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-2 cursor-pointer">
           <img
-            src="https://cdn.vectorstock.com/i/1000v/35/65/textile-logo-creative-sign-vector-21403565.jpg"
-            alt="Texcoms Logo"
+            src={logo}
+            alt="Company Logo"
             className="h-10 w-auto object-contain"
           />
         </div>
