@@ -98,7 +98,7 @@ export default function Home() {
 
           {/* Contact Us */}
           <button
-            onClick={() => navigate("/contact")}
+            onClick={() => navigate("/contactus")}
             className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
           >
             Contact Us
