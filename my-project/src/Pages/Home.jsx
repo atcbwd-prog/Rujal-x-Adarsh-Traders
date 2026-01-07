@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle2,
@@ -24,6 +25,7 @@ export default function Home() {
       }))
     );
   }, []);
+  const navigate = useNavigate();
 
   /* ======================
      FILTER STATES
@@ -63,45 +65,49 @@ export default function Home() {
       {/* ======================
           HERO (FULL BACKGROUND IMAGE)
       ====================== */}
-      <section className="relative min-h-[80vh] flex items-center">
-        <img
-          src={bannerImg}
-          alt="Textile Machinery"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50" />
+        <section className="relative min-h-[80vh] flex items-center">
+      <img
+        src={bannerImg}
+        alt="Textile Machinery"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-white">
-          <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
-            Trusted Textile Partner
-          </span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-white">
+        <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
+          Trusted Textile Partner
+        </span>
 
-          <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl">
-            Reliable Textile Machinery Spare Parts & Electronic Solutions
-          </h1>
+        <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl">
+          Reliable Textile Machinery Spare Parts & Electronic Solutions
+        </h1>
 
-          <p className="mt-4 text-white/90 max-w-xl">
-            We supply quality electronic cards, loom spare parts and textile
-            machinery components for weaving and spinning industries.
-          </p>
+        <p className="mt-4 text-white/90 max-w-xl">
+          We supply quality electronic cards, loom spare parts and textile
+          machinery components for weaving and spinning industries.
+        </p>
 
-          <div className="mt-8 flex gap-4">
-            <a
-              href="/products"
-              className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
-            >
-              View Products <ArrowRight size={18} />
-            </a>
+        <div className="mt-8 flex gap-4">
+          {/* View Products */}
+          <button
+            onClick={() => navigate("/products")}
+            className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
+          >
+            View Products <ArrowRight size={18} />
+          </button>
 
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
-            >
-              Contact Us
-            </a>
-          </div>
+          {/* Contact Us */}
+          <button
+            onClick={() => navigate("/contact")}
+            className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
+          >
+            Contact Us
+          </button>
         </div>
-      </section>
+      </div>
+    </section>
+  
+
 
       {/* ======================
           FILTERS (REAL)
