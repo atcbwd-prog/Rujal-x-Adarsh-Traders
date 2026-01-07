@@ -1,11 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Search,
-  ChevronDown,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Search, ChevronDown } from "lucide-react";
 
 import { productsData } from "../data/productData";
 import bannerImg from "../assets/Bannerimgss/BannerThree.png";
@@ -49,10 +44,7 @@ export default function Home() {
     if (category && p.category !== category) return false;
     if (department && p.department !== department) return false;
     if (brand && p.brand !== brand) return false;
-    if (
-      search &&
-      !p.name.toLowerCase().includes(search.toLowerCase())
-    )
+    if (search && !p.name.toLowerCase().includes(search.toLowerCase()))
       return false;
     return true;
   });
@@ -61,60 +53,56 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-
       {/* ======================
           HERO (FULL BACKGROUND IMAGE)
       ====================== */}
-        <section className="relative min-h-[80vh] flex items-center">
-      <img
-        src={bannerImg}
-        alt="Textile Machinery"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/50" />
+      <section className="relative min-h-[80vh] flex items-center">
+        <img
+          src={bannerImg}
+          alt="Textile Machinery"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-white">
-        <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
-          Trusted Textile Partner
-        </span>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-white">
+          <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
+            Trusted Textile Partner
+          </span>
 
-        <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl">
-          Reliable Textile Machinery Spare Parts & Electronic Solutions
-        </h1>
+          <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl">
+            Reliable Textile Machinery Spare Parts & Electronic Solutions
+          </h1>
 
-        <p className="mt-4 text-white/90 max-w-xl">
-          We supply quality electronic cards, loom spare parts and textile
-          machinery components for weaving and spinning industries.
-        </p>
+          <p className="mt-4 text-white/90 max-w-xl">
+            We supply quality electronic cards, loom spare parts and textile
+            machinery components for weaving and spinning industries.
+          </p>
 
-        <div className="mt-8 flex gap-4">
-          {/* View Products */}
-          <button
-            onClick={() => navigate("/products")}
-            className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
-          >
-            View Products <ArrowRight size={18} />
-          </button>
+          <div className="mt-8 flex gap-4">
+            {/* View Products */}
+            <button
+              onClick={() => navigate("/products")}
+              className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
+            >
+              View Products <ArrowRight size={18} />
+            </button>
 
-          {/* Contact Us */}
-          <button
-            onClick={() => navigate("/contactus")}
-            className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
-          >
-            Contact Us
-          </button>
+            {/* Contact Us */}
+            <button
+              onClick={() => navigate("/contactus")}
+              className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
+            >
+              Contact Us
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
-  
-
+      </section>
 
       {/* ======================
           FILTERS (REAL)
       ====================== */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-6">
-
           <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-700">
             Pre-Owned & Refurbished Machinery
           </h2>
@@ -124,9 +112,7 @@ export default function Home() {
           </p>
 
           <div className="mt-10 space-y-4">
-            <p className="text-center font-medium">
-              Search your product
-            </p>
+            <p className="text-center font-medium">Search your product</p>
 
             <div className="grid md:grid-cols-3 gap-4">
               <FilterSelect
@@ -173,7 +159,6 @@ export default function Home() {
       ====================== */}
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {homeProducts.map((product, index) => (
               <div
@@ -198,20 +183,17 @@ export default function Home() {
           </div>
 
           {homeProducts.length === 0 && (
-            <p className="text-center text-gray-500 mt-10">
-              No products found
-            </p>
+            <p className="text-center text-gray-500 mt-10">No products found</p>
           )}
 
           <div className="mt-10 text-center">
-            <a
-              href="/products"
-              className="inline-flex items-center gap-2 text-blue-700 font-semibold"
+            <button
+              onClick={() => navigate("/products")}
+              className="inline-flex items-center gap-2 text-blue-700 font-semibold hover:underline"
             >
               View All Products <ArrowRight size={18} />
-            </a>
+            </button>
           </div>
-
         </div>
       </section>
 
@@ -251,9 +233,7 @@ export default function Home() {
       ====================== */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Why Choose Us
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Why Choose Us</h2>
 
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -288,16 +268,15 @@ export default function Home() {
               Get in touch with us for product availability and guidance.
             </p>
 
-            <a
-              href="/contact"
+            <button
+              onClick={() => navigate("/contact")}
               className="inline-flex items-center gap-2 mt-6 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
             >
               Talk to Us <ArrowRight size={18} />
-            </a>
+            </button>
           </div>
         </div>
       </section>
-
     </main>
   );
 }
