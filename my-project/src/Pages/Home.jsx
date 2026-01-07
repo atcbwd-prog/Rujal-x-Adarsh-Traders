@@ -269,7 +269,7 @@ export default function Home() {
             </p>
 
             <button
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate("/contactus")}
               className="inline-flex items-center gap-2 mt-6 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
             >
               Talk to Us <ArrowRight size={18} />
