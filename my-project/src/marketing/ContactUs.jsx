@@ -97,23 +97,19 @@ export default function Contact() {
           {/* Info cards */}
           <aside className="md:col-span-4 space-y-6">
             <InfoCard icon={MapPin} title="Head Office">
-              <p>Texcoms Worldwide</p>
-              <p>15 Kallang Way #06-01</p>
-              <p>Singapore 349254</p>
+              <p>Adarsh Trading Company</p>
+              <p>Ground floor, S.No.222, Gala No.B-4 Raj Rajeshwari Compound, Sonale</p>
+              <p>Bhiwandi, Maharashtra India (India)421302</p>
             </InfoCard>
             <InfoCard icon={Phone} title="Phone">
-              <a className="hover:text-blue-700" href="tel:+6567456893">+65 6745 6893</a>
+              <a className="hover:text-blue-700" href="tel:+6567456893">9860680435</a> <br/>
+              <a className="hover:text-blue-700" href="tel:+6567456893">025-22299435</a>
             </InfoCard>
             <InfoCard icon={Mail} title="Email">
-              <a className="hover:text-blue-700" href="mailto:info@texcoms.com">info@texcoms.com</a>
+              <a className="hover:text-blue-700" href="mailto:info@texcoms.com">info@adarshtradingcompany.com</a> <br/>
+              <a className="hover:text-blue-700" href="mailto:info@texcoms.com">kumarjay2050@gmail.com</a>
             </InfoCard>
-            <InfoCard icon={Clock} title="Working Hours">
-              <p>Mon – Fri: 9:00 AM – 6:00 PM</p>
-              <p>Sat: 9:00 AM – 1:00 PM</p>
-            </InfoCard>
-            <InfoCard icon={Building2} title="Global Presence">
-              <p>India • Bangladesh • Vietnam • Indonesia • Turkey • +</p>
-            </InfoCard>
+            
           </aside>
 
           {/* Form */}
@@ -251,8 +247,8 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="rounded-3xl overflow-hidden border shadow">
             <iframe
-              title="Texcoms HQ Map"
-              src="https://www.google.com/maps?q=15%20Kallang%20Way%20%2306-01%2C%20Singapore%20349254&output=embed"
+              title="Adarsh Trading Company HQ Map"
+              src="https://www.google.com/search?q=adarsh+trading+company+bhiwandi&sca_esv=28031dd5f30059e8&udm=1&biw=1536&bih=730&aic=0&sz=16&cs=0&ei=3VVfadaGFs36g8UP5_PguAY&oq=adarsh+trading+company+bhiwandi&gs_lp=EhZnd3Mtd2l6LW1vZGVsZXNzLWxvY2FsIh9hZGFyc2ggdHJhZGluZyBjb21wYW55IGJoaXdhbmRpKgIIADIFEAAYgAQyCBAAGIAEGKIEMgUQABjvBTIFEAAY7wUyCBAAGIAEGKIEMggQABiABBiiBEjODFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIEmAMAiAYBkgcBMaAHALIHALgHAMIHAzAuMcgHAoAIAQ&sclient=gws-wiz-modeless-local#rlimm=16792955302890501369https://www.google.com/search?q=adarsh+trading+company+bhiwandi&sca_esv=28031dd5f30059e8&udm=1&biw=1536&bih=730&aic=0&sz=16&cs=0&ei=3VVfadaGFs36g8UP5_PguAY&oq=adarsh+trading+company+bhiwandi&gs_lp=EhZnd3Mtd2l6LW1vZGVsZXNzLWxvY2FsIh9hZGFyc2ggdHJhZGluZyBjb21wYW55IGJoaXdhbmRpKgIIADIFEAAYgAQyCBAAGIAEGKIEMgUQABjvBTIFEAAY7wUyCBAAGIAEGKIEMggQABiABBiiBEjODFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIEmAMAiAYBkgcBMaAHALIHALgHAMIHAzAuMcgHAoAIAQ&sclient=gws-wiz-modeless-local"
               className="w-full h-[360px] md:h-[480px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
