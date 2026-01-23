@@ -24,7 +24,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Company Logo"
-            className="h-10 w-auto object-contain"
+            className="h-12 w-[100%] object-contain"
           />
         </div>
 
