@@ -1,8 +1,12 @@
 // src/components/Footer.jsx
 import { Mail, Phone, MapPin, Linkedin, Facebook, Youtube } from "lucide-react";
-import logo from "../assets/logo/image.png"
+import logo from "../assets/logo/imagecopy.png"
+import { useNavigate } from "react-router-dom";
+
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-gray-900 text-gray-300">
       {/* Top Section */}
@@ -12,61 +16,69 @@ const Footer = () => {
         <img
             src={logo}
             alt="Company Logo"
-            className="h-10 w-auto object-contain"
+            className="h-12 w-auto object-contain"
           />
-          <p className="text-sm mt-5  leading-relaxed text-gray-400">
+          <p className="text-sm mt-5  leading-relaxed ">
             Adarsh Trading  — from machinery trading and
             consulting to digital transformation — empowering mills to optimize
             performance and quality.
           </p>
         </div>
 
-        {/* Quick Links */}
         <div>
-          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a
-                href="/about"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                About Us
-              </a>
-            </li>
-            <li>
-              <a
-                href="/divisions"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                Divisions
-              </a>
-            </li>
-            <li>
-              <a
-                href="/latest-offering"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                Latest Offering
-              </a>
-            </li>
-            <li>
-              <a
-                href="/news"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                News & Insights
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </div>
+  <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+  <ul className="space-y-2 text-sm">
+    
+  <li>
+      <button
+        onClick={() => navigate("/")}
+        className="hover:text-blue-400 transition-colors duration-200 text-left"
+      >
+       Home
+      </button>
+    </li>
+
+
+    <li>
+      <button
+        onClick={() => navigate("/aboutus")}
+        className="hover:text-blue-400 transition-colors duration-200 text-left"
+      >
+        About Us
+      </button>
+    </li>
+
+
+    <li>
+      <button
+        onClick={() => navigate("/products")}
+        className="hover:text-blue-400 transition-colors duration-200 text-left"
+      >
+        Products
+      </button>
+    </li>
+
+    <li>
+      <button
+        onClick={() => navigate("/services")}
+        className="hover:text-blue-400 transition-colors duration-200 text-left"
+      >
+        Services
+      </button>
+    </li>
+    
+
+    <li>
+      <button
+        onClick={() => navigate("/contactus")}
+        className="hover:text-blue-400 transition-colors duration-200 text-left"
+      >
+        Contact Us
+      </button>
+    </li>
+  </ul>
+</div>
+
 
         {/* Contact Info */}
         <div>

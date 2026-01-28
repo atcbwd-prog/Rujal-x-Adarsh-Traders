@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo/image.png";
+import logo from "../assets/logo/imagecopy.png";
 
 const Navbar = () => {
   const router = useNavigate();
@@ -24,12 +24,12 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Company Logo"
-            className="h-12 w-[100%] object-contain"
+            className="h-14 w-[100%] object-contain"
           />
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
+        <div className="hidden md:flex space-x-8 text-gray-700 font-semibold text-lg">
           {navLinks.map((link) => (
             <p
               key={link.name}

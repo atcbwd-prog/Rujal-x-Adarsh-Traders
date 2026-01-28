@@ -7,7 +7,9 @@ import {
   ChevronRight,
   Search,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { productsData } from "../data/productData";
+import { slugify } from "../utils/slugify";
 
 /* =========================
    FLATTEN productsData
@@ -17,7 +19,7 @@ const INVENTORY = productsData.flatMap((category) =>
     id: `${category.category}-${index}`,
     title: product.name,
     category: category.category,
-    brand: category.category.split(" ")[0], // basic mapping
+    brand: category.category.split(" ")[0],
     country: "India",
     thumbnail: product.image,
     description: product.description,
@@ -30,6 +32,7 @@ function Products() {
   /* =========================
      STATE
   ========================= */
+  const navigate = useNavigate(); // ✅ REQUIRED
   const [q, setQ] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
   const [filters, setFilters] = useState({
@@ -179,18 +182,19 @@ function Products() {
               </button>
             </div>
 
-            {/* PRODUCT GRID (same CSS) */}
+            {/* PRODUCT GRID */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {paged.map((p) => (
                 <article
                   key={p.id}
                   className="group rounded-2xl overflow-hidden border bg-white hover:shadow-xl transition"
                 >
-                  <div className="aspect-video overflow-hidden">
+                  {/* IMAGE (NO BLUR, FULL IMAGE) */}
+                  <div className="h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
                     <img
                       src={p.thumbnail}
                       alt={p.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                      className="max-h-full w-auto object-contain"
                     />
                   </div>
 
@@ -208,12 +212,18 @@ function Products() {
                     </p>
 
                     <div className="mt-4 flex items-center justify-between">
-                      <a
-                        href="/contact"
-                        className="inline-flex items-center gap-1 text-blue-700 font-medium"
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/products/${slugify(p.category)}/${slugify(
+                              p.title
+                            )}`
+                          )
+                        }
+                        className="inline-flex items-center gap-1 text-blue-700 font-medium hover:underline"
                       >
                         Enquire <ArrowRight size={16} />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </article>

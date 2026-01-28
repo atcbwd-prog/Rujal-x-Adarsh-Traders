@@ -4,44 +4,7 @@ import io12bBoard from "../assets/Products/three.jpeg";
 import driveBoard from "../assets/Products/four.jpeg";
 import lateupMotor from "../assets/Products/five.png";
 import servoMotor from "../assets/Products/six.jpeg";
-// SOMET IMAGES
-/* =======================
-   SOMET ELECTRONIC IMAGES
-======================= */
-// import eldMythBoard from "../assets/images/products/somet/eld-myth-board.jpg";
-// import io2Pr2Board from "../assets/images/products/somet/io2-pr2-board.jpg";
-// import io12bBoard from "../assets/images/products/somet/io1-2b-board.jpg";
-// import driveBoard from "../assets/images/products/somet/drive-board.jpg";
-// import lateupMotor from "../assets/images/products/somet/lateup-motor.jpg";
-// import servoMotor from "../assets/images/products/somet/servo-motor.jpg";
-// import dstBoard from "../assets/images/products/somet/dst-board.jpg";
-// import dfdBoard from "../assets/images/products/somet/dfd-board.jpg";
-// import mcs1fCard from "../assets/images/products/somet/mcs-1f-card.jpg";
-// import eg1Board from "../assets/images/products/somet/eg1-board.jpg";
-// import takeupMotor from "../assets/images/products/somet/takeup-motor.jpg";
-// import magnetBar from "../assets/images/products/somet/magnet-bar.jpg";
-// import opt4aBoard from "../assets/images/products/somet/opt-4a-board.jpg";
-// import mcuBoard from "../assets/images/products/somet/mcu-board.jpg";
-// import io3Board from "../assets/images/products/somet/io3-board.jpg";
-// import pcdBoard from "../assets/images/products/somet/pcd-board.jpg";
-// import optBoard from "../assets/images/products/somet/opt-board.jpg";
-// import dfsBoard from "../assets/images/products/somet/dfs-board.jpg";
-// import displayBoard from "../assets/images/products/somet/display.jpg";
 
-// /* =======================
-//    OTHER SPARES IMAGES
-// ======================= */
-// import dobbySpares from "../assets/images/products/dobby/dobby-spares.jpg";
-// import fimtextileDobby from "../assets/images/products/dobby/fimtextile.jpg";
-// import krDobby from "../assets/images/products/dobby/kr1-kr2.jpg";
-// import staubli2232 from "../assets/images/products/staubli/staubli-2232.jpg";
-// import undermotionConnector from "../assets/images/products/spares/undermotion-connector.jpg";
-// import picanolLoom from "../assets/images/products/picanol/picanol.jpg";
-// import sulzerLoom from "../assets/images/products/sulzer/sulzer.jpg";
-
-/* =======================
-   PRODUCTS DATA
-======================= */
 
 export const productsData = [
   {

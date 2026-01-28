@@ -82,15 +82,22 @@ export default function Contact() {
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-700" />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-28 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold">Contact Us</h1>
-          <p className="mt-3 text-blue-100 max-w-2xl">
-            Speak with our team about machinery sourcing, audits, relocations, or after-sales support.
-          </p>
-        </div>
-      </section>
+  {/* Background */}
+  <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-blue-800 to-blue-900" />
 
+  {/* Content */}
+  <div className="relative max-w-4xl mx-auto px-6 py-24 md:py-32 mt-10 text-center text-white">
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight">
+      Contact Us
+    </h1>
+
+    <p className="mt-5 text-base md:text-lg text-blue-100 leading-relaxed">
+      Speak with our team about machinery sourcing, audits,
+      relocations, or after-sales support.
+    </p>
+  </div>
+</section>
+  
       {/* Info + Form */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-12 gap-10">
