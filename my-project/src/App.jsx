@@ -7,38 +7,60 @@ import Products from "./Pages/Products";
 import AboutUs from "./marketing/AboutUs";
 import ContactUs from "./marketing/ContactUs";
 import SingleProduct from "./Pages/SingleProduct";
-
-// import CartPage from "./Pages/CartPage";
-
 import RujalMedia from "./marketing/RujalMedia";
+import SignIn from "./Pages/Admin/SignIn";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import AddProduct from "./Pages/Admin/AddProduct";
+import EditProduct from "./Pages/Admin/EditProduct";
+import ProtectedRoute from "./Pages/Admin/ProtectedRoute";
 
 function App() {
   return (
-    // <CartProvider>
     <div>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/products" element={<Products />} />
-
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route
-  path="/products/:categorySlug/:productSlug"
-  element={<SingleProduct />}
-/>
-        {/* <Route path="/men" element={<ProductsPage defaultCategory="men" />} />
-            <Route path="/women" element={<ProductsPage defaultCategory="women" />} />
-            <Route path="/kids" element={<ProductsPage defaultCategory="kids" />} />
-            <Route path="/cart" element={<CartPage />} />  */}
-      </Routes>
 
+        <Route
+          path="/products/:categorySlug/:productSlug"
+          element={<SingleProduct />}
+        />
+        {/* Admin routes */}
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/add-product"
+          element={
+            <ProtectedRoute>
+              <AddProduct />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/edit-product/:id"
+          element={
+            <ProtectedRoute>
+              <EditProduct />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
       <Footer />
       <RujalMedia />
     </div>
-    // </CartProvider>
   );
 }
 

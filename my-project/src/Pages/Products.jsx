@@ -8,31 +8,23 @@ import {
   Search,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { productsData } from "../data/productData";
 import { slugify } from "../utils/slugify";
+import { useTranslation } from "react-i18next";
+import axiosInstance from "../configs/axiosConfig";
 
 /* =========================
-   FLATTEN productsData
+   FLATTEN DATA
 ========================= */
-const INVENTORY = productsData.flatMap((category) =>
-  category.products.map((product, index) => ({
-    id: `${category.category}-${index}`,
-    title: product.name,
-    category: category.category,
-    brand: category.category.split(" ")[0],
-    country: "India",
-    thumbnail: product.image,
-    description: product.description,
-  }))
-);
 
 const unique = (arr) => Array.from(new Set(arr)).sort();
 
 function Products() {
-  /* =========================
-     STATE
-  ========================= */
-  const navigate = useNavigate(); // ✅ REQUIRED
+  const [productsData, setProductsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const INVENTORY = productsData;
   const [q, setQ] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
   const [filters, setFilters] = useState({
@@ -43,20 +35,14 @@ function Products() {
   const [page, setPage] = useState(1);
   const pageSize = 12;
 
-  /* =========================
-     FILTER OPTIONS
-  ========================= */
   const options = useMemo(() => {
     return {
       categories: unique(INVENTORY.map((i) => i.category)),
       brands: unique(INVENTORY.map((i) => i.brand)),
       countries: unique(INVENTORY.map((i) => i.country)),
     };
-  }, []);
+  }, [INVENTORY]);
 
-  /* =========================
-     FILTER LOGIC
-  ========================= */
   const filtered = useMemo(() => {
     return INVENTORY.filter((item) => {
       const text = `${item.title} ${item.category}`.toLowerCase();
@@ -69,11 +55,8 @@ function Products() {
         return false;
       return true;
     });
-  }, [q, filters]);
+  }, [q, filters, INVENTORY]);
 
-  /* =========================
-     PAGINATION
-  ========================= */
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
 
   useEffect(() => {
@@ -85,9 +68,6 @@ function Products() {
     return filtered.slice(start, start + pageSize);
   }, [filtered, page]);
 
-  /* =========================
-     HANDLERS
-  ========================= */
   const toggle = (key, value) => {
     setFilters((f) => {
       const set = new Set(f[key]);
@@ -101,39 +81,65 @@ function Products() {
     setQ("");
   };
 
-  /* =========================
-     UI
-  ========================= */
+  const getProducts = async () => {
+    try {
+      setLoading(true);
+
+      const res = await axiosInstance.get("/admin/view-products");
+
+      if (res.data.success) {
+        const formatted = res.data.allProducts.map((p) => ({
+          id: p._id,
+          title: p.name,
+          category: p.category?.trim(),
+          brand: p.brand,
+          country: p.location,
+          thumbnail: `${import.meta.env.VITE_API_URL}/uploads/${p.image?.[0]}`,
+          description: p.description,
+        }));
+
+        setProductsData(formatted);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
-    <main className="min-h-screen bg-white text-gray-900">
+    <main className="min-h-screen bg-white text-gray-900 mt-20">
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-700" />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20 text-white">
-          <h1 className="text-3xl md:text-4xl font-bold">Our Products</h1>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16 text-white">
+          <h1 className="text-3xl md:text-4xl font-bold">
+            {t("products.heroTitle")}
+          </h1>
           <p className="mt-2 text-blue-100 max-w-2xl">
-            Explore our complete range of textile machinery spare parts and
-            electronic cards.
+            {t("products.heroDesc")}
           </p>
         </div>
       </section>
 
       {/* CONTENT */}
-      <section className="py-10 md:py-14">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* SIDEBAR */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-12 gap-8">
           <aside className="md:col-span-3">
             <div className="hidden md:block sticky top-24 space-y-6">
-              <SearchBox q={q} setQ={setQ} />
+              <SearchBox q={q} setQ={setQ} t={t} />
               <FiltersPanel
                 filters={filters}
                 options={options}
                 toggle={toggle}
                 clearAll={clearAll}
+                t={t}
               />
             </div>
 
-            {/* Mobile filters */}
             {openFilters && (
               <div className="fixed inset-0 z-50">
                 <div
@@ -142,20 +148,22 @@ function Products() {
                 />
                 <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white p-6 overflow-y-auto">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold">Filters</h3>
+                    <h3 className="font-semibold">{t("products.filters")}</h3>
                     <button
                       onClick={() => setOpenFilters(false)}
-                      className="p-2 rounded-lg border"
+                      className="p-2 border rounded"
                     >
                       <X size={16} />
                     </button>
                   </div>
-                  <SearchBox q={q} setQ={setQ} />
+
+                  <SearchBox q={q} setQ={setQ} t={t} />
                   <FiltersPanel
                     filters={filters}
                     options={options}
                     toggle={toggle}
                     clearAll={clearAll}
+                    t={t}
                   />
                 </div>
               </div>
@@ -164,54 +172,51 @@ function Products() {
 
           {/* RESULTS */}
           <div className="md:col-span-9">
-            {/* Top bar */}
-            <div className="md:hidden mb-4 flex justify-between">
+            <div className="md:hidden mb-4">
               <button
-                className="inline-flex items-center gap-2 rounded-xl border px-4 py-2"
                 onClick={() => setOpenFilters(true)}
+                className="border px-4 py-2 rounded-xl flex items-center gap-2"
               >
-                <Filter size={16} /> Filters
+                <Filter size={16} /> {t("products.filters")}
               </button>
             </div>
 
-            {/* Summary */}
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-              <p>{filtered.length} results</p>
-              <button onClick={clearAll} className="hover:text-blue-700">
-                Clear all
-              </button>
+            <div className="flex justify-between text-sm text-gray-600 mb-3">
+              <p>
+                {filtered.length} {t("products.results")}
+              </p>
+              <button onClick={clearAll}>{t("products.clearAll")}</button>
             </div>
+            {loading ? (
+              <div className="text-center py-20 text-gray-500">
+                Loading products...
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {paged.map((p) => (
+                  <article
+                    key={p.id}
+                    className="border rounded-2xl overflow-hidden hover:shadow-xl"
+                  >
+                    <div className="h-56 bg-gray-100 flex items-center justify-center">
+                      <img
+                        src={p.thumbnail || "/no-image.png"}
+                        alt={p.title}
+                        className="max-h-full"
+                      />
+                    </div>
 
-            {/* PRODUCT GRID */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paged.map((p) => (
-                <article
-                  key={p.id}
-                  className="group rounded-2xl overflow-hidden border bg-white hover:shadow-xl transition"
-                >
-                  {/* IMAGE (NO BLUR, FULL IMAGE) */}
-                  <div className="h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={p.thumbnail}
-                      alt={p.title}
-                      className="max-h-full w-auto object-contain"
-                    />
-                  </div>
+                    <div className="p-5">
+                      <span className="text-xs bg-blue-100 px-2 py-1 rounded">
+                        {p.category}
+                      </span>
 
-                  <div className="p-5">
-                    <span className="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
-                      {p.category}
-                    </span>
+                      <h3 className="mt-2 font-semibold text-lg">{p.title}</h3>
 
-                    <h3 className="mt-2 font-semibold text-lg line-clamp-2">
-                      {p.title}
-                    </h3>
+                      <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                        {p.description}
+                      </p>
 
-                    <p className="text-sm text-gray-600 mt-2 line-clamp-3">
-                      {p.description}
-                    </p>
-
-                    <div className="mt-4 flex items-center justify-between">
                       <button
                         onClick={() =>
                           navigate(
@@ -220,33 +225,33 @@ function Products() {
                             )}`
                           )
                         }
-                        className="inline-flex items-center gap-1 text-blue-700 font-medium hover:underline"
+                        className="mt-3 text-blue-700 flex items-center gap-1"
                       >
-                        Enquire <ArrowRight size={16} />
+                        {t("products.enquire")} <ArrowRight size={16} />
                       </button>
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  </article>
+                ))}
+              </div>
+            )}
 
             {/* PAGINATION */}
-            <div className="mt-8 flex items-center justify-center gap-2">
+            <div className="mt-8 flex justify-center gap-2">
               <button
-                className="p-2 rounded-lg border disabled:opacity-40"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
+                className="border p-2 rounded"
                 disabled={page === 1}
               >
                 <ChevronLeft />
               </button>
 
-              <span className="px-3 py-2 rounded-lg border text-sm">
-                Page {page} of {totalPages}
+              <span className="px-3 py-2 border rounded text-sm">
+                {t("products.page")} {page} {t("products.of")} {totalPages}
               </span>
 
               <button
-                className="p-2 rounded-lg border disabled:opacity-40"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                className="border p-2 rounded"
                 disabled={page === totalPages}
               >
                 <ChevronRight />
@@ -259,89 +264,72 @@ function Products() {
   );
 }
 
-/* =========================
-   COMPONENTS
-========================= */
-function SearchBox({ q, setQ }) {
+/* ========================= COMPONENTS ========================= */
+
+function SearchBox({ q, setQ, t }) {
   return (
     <div className="relative">
-      <Search
-        className="absolute left-3 top-1/2 -translate-y-1/2"
-        size={16}
-      />
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={16} />
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Search products..."
-        className="w-full rounded-xl border pl-9 pr-3 py-2 outline-none focus:ring-2 focus:ring-blue-700"
+        placeholder={t("products.searchPlaceholder")}
+        className="w-full border rounded-xl pl-9 py-2"
       />
     </div>
   );
 }
 
-function FiltersPanel({ filters, options, toggle, clearAll }) {
+function FiltersPanel({ filters, options, toggle, clearAll, t }) {
   return (
     <div className="space-y-6">
       <fieldset className="border rounded-xl p-4">
-        <legend className="text-sm font-semibold">Category</legend>
-        <div className="mt-2 space-y-2 text-sm">
-          {options.categories.map((c) => (
-            <label key={c} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                className="accent-blue-700"
-                checked={filters.category.includes(c)}
-                onChange={() => toggle("category", c)}
-              />
-              {c}
-            </label>
-          ))}
-        </div>
+        <legend>{t("products.category")}</legend>
+        {options.categories.map((c) => (
+          <label key={c} className="flex gap-2">
+            <input
+              type="checkbox"
+              checked={filters.category.includes(c)}
+              onChange={() => toggle("category", c)}
+            />
+            {c}
+          </label>
+        ))}
       </fieldset>
 
       <fieldset className="border rounded-xl p-4">
-        <legend className="text-sm font-semibold">Brand</legend>
-        <div className="mt-2 space-y-2 text-sm">
-          {options.brands.map((b) => (
-            <label key={b} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                className="accent-blue-700"
-                checked={filters.brand.includes(b)}
-                onChange={() => toggle("brand", b)}
-              />
-              {b}
-            </label>
-          ))}
-        </div>
+        <legend>{t("products.brand")}</legend>
+        {options.brands.map((b) => (
+          <label key={b} className="flex gap-2">
+            <input
+              type="checkbox"
+              checked={filters.brand.includes(b)}
+              onChange={() => toggle("brand", b)}
+            />
+            {b}
+          </label>
+        ))}
       </fieldset>
 
       <fieldset className="border rounded-xl p-4">
-        <legend className="text-sm font-semibold">Location</legend>
-        <div className="mt-2 space-y-2 text-sm">
-          {options.countries.map((c) => (
-            <label key={c} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                className="accent-blue-700"
-                checked={filters.country.includes(c)}
-                onChange={() => toggle("country", c)}
-              />
-              {c}
-            </label>
-          ))}
-        </div>
+        <legend>{t("products.location")}</legend>
+        {options.countries.map((c) => (
+          <label key={c} className="flex gap-2">
+            <input
+              type="checkbox"
+              checked={filters.country.includes(c)}
+              onChange={() => toggle("country", c)}
+            />
+            {c}
+          </label>
+        ))}
       </fieldset>
 
-      <button onClick={clearAll} className="text-sm underline">
-        Reset all
+      <button onClick={clearAll} className="underline text-sm">
+        {t("products.resetAll")}
       </button>
     </div>
   );
 }
 
-/* =========================
-   EXPORTS
-========================= */
 export default Products;
-export { Products };

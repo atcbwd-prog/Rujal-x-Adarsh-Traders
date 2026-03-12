@@ -1,26 +1,56 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { productsData } from "../data/productData";
 import { slugify } from "../utils/slugify";
 import { ArrowLeft, Phone, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
+import axiosInstance from "../configs/axiosConfig";
 
 const SingleProduct = () => {
   const { categorySlug, productSlug } = useParams();
   const navigate = useNavigate();
 
-  // 🔍 Find product
-  let product = null;
-  let categoryName = "";
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  productsData.forEach((cat) => {
-    if (slugify(cat.category) === categorySlug) {
-      categoryName = cat.category;
-      cat.products.forEach((p) => {
-        if (slugify(p.name) === productSlug) {
-          product = p;
-        }
-      });
+  const getProduct = async () => {
+    try {
+      setLoading(true);
+
+      const res = await axiosInstance.get("/admin/view-products");
+
+      if (res.data.success) {
+        const all = res.data.allProducts;
+
+        let found = null;
+
+        all.forEach((p) => {
+          if (
+            slugify(p.category?.trim()) === categorySlug &&
+            slugify(p.name) === productSlug
+          ) {
+            found = p;
+          }
+        });
+
+        setProduct(found);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-  });
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, [categorySlug, productSlug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Loading product...
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -31,8 +61,8 @@ const SingleProduct = () => {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* ================= HEADER ================= */}
+    <main className="min-h-screen bg-gray-50 mt-20">
+      {/* HEADER */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
           <button
@@ -41,16 +71,16 @@ const SingleProduct = () => {
           >
             <ArrowLeft size={18} />
           </button>
-          <p className="text-sm text-gray-600">{categoryName}</p>
+          <p className="text-sm text-gray-600">{product.category}</p>
         </div>
       </div>
 
-      {/* ================= CONTENT ================= */}
+      {/* CONTENT */}
       <section className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* IMAGE */}
         <div className="bg-white rounded-2xl shadow p-6 flex items-center justify-center">
           <img
-            src={product.image}
+            src={`${import.meta.env.VITE_API_URL}/uploads/${product.image?.[0]}`}
             alt={product.name}
             className="max-h-[420px] w-auto object-contain"
           />
@@ -63,14 +93,14 @@ const SingleProduct = () => {
           </h1>
 
           <p className="mt-2 text-sm text-blue-700 font-medium">
-            Category: {categoryName}
+            Category: {product.category}
           </p>
 
           <p className="mt-6 text-gray-700 leading-relaxed">
             {product.description}
           </p>
 
-          {/* ENQUIRY BOX */}
+          {/* ENQUIRY */}
           <div className="mt-8 border-t pt-6">
             <h3 className="font-semibold text-lg mb-4">
               Enquire About This Product
