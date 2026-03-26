@@ -30,7 +30,7 @@ function App() {
           element={<SingleProduct />}
         />
         {/* Admin routes */}
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route
           path="/dashboard"
           element={
