@@ -1,6 +1,6 @@
 function Footer() {
   const handleClick = () => {
-    window.open("https://rujalmedia.com/", "_blank", "noopener,noreferrer");
+    window.open("https://www.adarshtradingcompany.com/", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -10,7 +10,7 @@ function Footer() {
         onClick={handleClick}
         className="text-blue-600 hover:underline cursor-pointer"
       >
-        Rujal Media Pvt Ltd.
+        Adarsh Trading Company Pvt Ltd.
       </span>{" "}
       All Rights Reserved
     </footer>

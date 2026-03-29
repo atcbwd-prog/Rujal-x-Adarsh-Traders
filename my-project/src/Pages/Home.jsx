@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Search, ChevronDown } from "lucide-react";
 
-import bannerImg from "../assets/Bannerimgss/BannerThree.png";
+import bannerVideo from "../assets/Bannerimgss/weaving.mp4";
 import Aboutimg from "../assets/Bannerimgss/Aboutus.jpeg";
 import { useTranslation } from "react-i18next";
 
@@ -84,27 +84,33 @@ export default function Home() {
           HERO (FULL BACKGROUND IMAGE)
       ====================== */}
       <section className="relative min-h-[80vh] flex items-center">
-        <img
-          src={bannerImg}
-          alt="Textile Machinery"
+        <video
+          src={bannerVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-white">
-          <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
+          {/* <span className="inline-block text-sm font-semibold bg-white/20 px-4 py-1 rounded-full">
             {t("home.badge")}
-          </span>
-          <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl">
+          </span> */}
+          <h1
+            className="text-4xl md:text-5xl font-bold max-w-3xl"
+            style={{ marginTop: "-6.5rem", color: "#0f75bd", fontWeight: "1000" }}
+          >
             {t("home.heroTitle")}
           </h1>
 
-          <p className="mt-4 text-white/90 max-w-xl">
+          {/* <p className="mt-4 text-white/90 max-w-xl">
             <p>{t("home.heroDesc")}</p>
-          </p>
-
+          </p> */}
+          
           <div className="mt-8 flex gap-4">
-            {/* View Products */}
+            {/*
             <button
               onClick={() => navigate("/products")}
               className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow-lg"
@@ -112,13 +118,13 @@ export default function Home() {
               {t("home.viewProducts")} <ArrowRight size={18} />
             </button>
 
-            {/* Contact Us */}
             <button
               onClick={() => navigate("/contactus")}
               className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10"
             >
               {t("home.contactUs")}
             </button>
+            */}
           </div>
         </div>
       </section>
@@ -128,14 +134,14 @@ export default function Home() {
       ====================== */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-700">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-700" style={{ color: "#0f75bd" }}>
             {t("home.filterTitle")}
           </h2>
-
+          {/*}
           <p className="text-center text-gray-600 mt-2 uppercase text-sm">
             {t("home.filterSub")}{" "}
           </p>
-
+          */}
           <div className="mt-10 space-y-4">
             <p className="text-center font-medium">{t("home.searchLabel")}</p>
 

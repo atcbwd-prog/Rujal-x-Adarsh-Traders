@@ -16,15 +16,15 @@ i18n
       en: {
         translation: {
           home: {
-            badge: "Trusted Textile Partner",
+           // badge: "Trusted Textile Partner",
             heroTitle:
-              "Reliable Textile Machinery Spare Parts & Electronic Solutions",
-            heroDesc:
-              "We supply quality electronic cards, loom spare parts and textile machinery components for weaving and spinning industries.",
+              "GLOBAL TEXTILE MACHINERY",
+            //heroDesc:
+            //  "We supply quality electronic cards, loom spare parts and textile machinery components for weaving and spinning industries.",
             viewProducts: "View Products",
             contactUs: "Contact Us",
 
-            filterTitle: "Pre-Owned & Refurbished Machinery",
+            filterTitle: "Deals in all kinds of Pre-owned Textile Machineries Worldwide",
             filterSub:
               "Experienced Machinery – Cost Effective Solution to Your Business",
             searchLabel: "Search your product",
@@ -63,7 +63,7 @@ i18n
           },
           footer: {
             aboutText:
-              "Adarsh Trading — from machinery trading and consulting to digital transformation — empowering mills to optimize performance and quality.",
+              "Adarsh Trading Company — from machinery trading and consulting to digital transformation — empowering mills to optimize performance and quality.",
 
             quickLinks: "Quick Links",
             home: "Home",
@@ -80,7 +80,7 @@ i18n
           about: {
             heroTitle: "About Adarsh Trading Company",
             heroDesc:
-              "Delivering global textile expertise through innovation, experience, and excellence.",
+              "GLOBAL TEXTILE MACHINERY",
 
             whoTitle: "Who We Are",
             whoDesc1:

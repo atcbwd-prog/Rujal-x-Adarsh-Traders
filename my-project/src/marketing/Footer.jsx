@@ -87,15 +87,15 @@ const Footer = () => {
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 mt-0.5 text-blue-400" />
               <span>
-                Adarsh Trading <br />
-                Ground Floos S.No.222, Gala No. B-4 Raj Rajeshwari Compound,
+                Adarsh Trading Company <br />
+                Ground Floos S.No.222, Gala No. B-4 <br /> Raj Rajeshwari Compound,
                 Sonale Bhiwandi,Maharashtra(India)421302
               </span>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-blue-400" />
-              <a href="tel:9860690435" className="hover:text-blue-400">
-                9860690435
+              <a href="tel:+91 9860680435" className="hover:text-blue-400">
+                +91 9860680435
               </a>
             </li>
             <li className="flex items-center gap-2">
