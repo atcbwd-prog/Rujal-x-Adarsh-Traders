@@ -24,7 +24,7 @@ i18n
             viewProducts: "View Products",
             contactUs: "Contact Us",
 
-            filterTitle: "Deals in all kinds of Pre-owned Textile Machineries worldwide",
+            filterTitle: "Deals in Testing all kinds of Pre-owned Textile Machineries worldwide",
             filterSub:
               "Experienced Machinery – Cost Effective Solution to Your Business",
             searchLabel: "Search your product",
